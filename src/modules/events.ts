@@ -1,5 +1,6 @@
 import Swup from '../Swup';
 import delegate from 'delegate-it';
+import PageLoadedResponse from './events/PageLoadedResponse';
 
 type HandlersEventMap = {
 	animationInDone: undefined;
@@ -12,7 +13,7 @@ type HandlersEventMap = {
 	disabled: undefined;
 	enabled: undefined;
 	openPageInNewTab: delegate.Event<MouseEvent>;
-	pageLoaded: undefined;
+	pageLoaded: PageLoadedResponse;
 	pageRetrievedFromCache: undefined;
 	pageView: PopStateEvent | undefined;
 	popState: PopStateEvent;

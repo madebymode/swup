@@ -2,6 +2,7 @@ import Swup from '../Swup';
 import { fetch } from '../helpers';
 import { TransitionOptions } from './loadPage';
 import { PageRecord } from './Cache';
+import PageLoadedResponse from './events/PageLoadedResponse';
 
 export function fetchPage(this: Swup, data: TransitionOptions): Promise<PageRecord> {
 	const headers = this.options.requestHeaders;
@@ -28,7 +29,7 @@ export function fetchPage(this: Swup, data: TransitionOptions): Promise<PageReco
 			// render page
 			const cacheablePageData = { ...page, url };
 			this.cache.cacheUrl(cacheablePageData);
-			this.triggerEvent('pageLoaded');
+			this.triggerEvent('pageLoaded', new PageLoadedResponse(page, response));
 			resolve(cacheablePageData);
 		});
 	});
